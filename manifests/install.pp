@@ -19,27 +19,23 @@ class cacti::install
 
 ) inherits cacti::params {
 
-  include apache::php
+  include apache::mod::php
   include mysql::server
 
   package {
-    $apache:
-      ensure  => installed;
+    # $apache:
+    #   ensure  => installed;
     $cacti:
-		case $operatingsystem { 
-      	centos, redhat: { require => [ Package[$snmp_utils], Yumrepo[ "RepoForge" ] ] }
-			debian, ubuntu: { require => [ Package[$snmp_utils] ] }
-			default: { fail("Unknown operating system") }
-		}
-
+  		require => Package[$snmp_utils];
     $snmp_utils:;
   } # package
 
   mysql::db { $db_name:
-    user      =>  $db_user,
-    password  =>  $db_pass,
-    sql       =>  '/var/www/cacti/cacti.sql',
-    notify    => [ Exec['cacti-config'],Exec['spine-config'], Exec['rebuild_poller_cache'] ],
+    user     =>  $db_user,
+    password =>  $db_pass,
+    # sql      =>  '/var/www/cacti/cacti.sql',
+    sql      => '/usr/share/doc/cacti-0.8.8b/cacti.sql',
+    notify   => [ Exec['cacti-config'],Exec['spine-config'], Exec['rebuild_poller_cache'] ],
   }  # mysql::db
 
   if $install_spine {
