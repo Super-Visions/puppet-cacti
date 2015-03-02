@@ -6,7 +6,7 @@
 
 /*
  +-------------------------------------------------------------------------+
- | Copyright (C) 2004-2009 The Cacti Group                                 |
+ | Copyright (C) 2004-2013 The Cacti Group                                 |
  |                                                                         |
  | This program is free software; you can redistribute it and/or           |
  | modify it under the terms of the GNU General Public License             |
@@ -31,12 +31,19 @@
 $database_type = "mysql";
 $database_default = "cacti";
 $database_hostname = "localhost";
-$database_username = "cacti";
-$database_password = "cacti";
+$database_username = "cactiuser";
+$database_password = "cactiuser";
 $database_port = "3306";
 $database_ssl = false;
 
+/*
+   Edit this to point to the default URL of your Cacti install
+   ex: if your cacti install as at http://serverip/cacti/ this
+   would be set to /cacti/
+*/
+//$url_path = "/cacti/";
+
 /* Default session name - Session name must contain alpha characters */
-#$cacti_session_name = "Cacti";
+//$cacti_session_name = "Cacti";
 
 ?>

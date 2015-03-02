@@ -10,9 +10,9 @@
 class cacti
 (
   $db_name  = 'cacti',
-  $db_user  = 'cacti',
-  $db_pass  = 'cacti',
-  $install_spine  = true
+  $db_user  = 'cactiuser',
+  $db_pass  = 'cactiuser',
+  $install_spine  = false
 
 ) inherits cacti::params {
   
@@ -28,14 +28,14 @@ class cacti
     require       => Class['cacti::install'],
   }  
 
-  include cacti::service
+#  include cacti::service
 
   # This if statement should not be here. But for the life of me I could not figure out why the require was not working.
   # After spending more time than I should have on this I decided that to use the if instead and move forward.
   if $database_created {
-    class { 'cacti::implementation':
-      require => Class['cacti::config'];
-    }
+#    class { 'cacti::implementation':
+#      require => Class['cacti::config'];
+#    }
   }
 
 

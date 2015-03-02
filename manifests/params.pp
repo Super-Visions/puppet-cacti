@@ -25,8 +25,8 @@ class cacti::params {
       $spine          = 'cacti-spine'
       $cron           = 'crond'
       #Directories and Files
-      $cacti_dir              = '/var/www/cacti/'
-      $config_php             = '/var/www/cacti/include/config.php'
+      $cacti_dir              = '/usr/share/cacti'
+      $config_php             = '/etc/cacti/db.php'
       $config_php_src         = 'puppet:///modules/cacti/redhat/config.php'
       $php_ini                = '/etc/php.ini'
       $php_ini_src            = 'puppet:///modules/cacti/redhat/php.ini'
@@ -35,10 +35,10 @@ class cacti::params {
       $spine_conf             = '/etc/spine.conf'
       $spine_conf_src         = 'puppet:///modules/cacti/redhat/spine.conf'
       $cron_cacti             = '/etc/cron.d/cacti'
-      $cron_cacti_content     = "*/5 * * * *	apache	php /var/www/cacti/poller.php &>/dev/null\n"
-      $cacti_config_sql       = '/var/www/cacti/cactiConfig.sql'
+      $cron_cacti_content     = "*/5 * * * *    cacti   /usr/bin/php /usr/share/cacti/poller.php > /dev/null 2>&1\n"
+      $cacti_config_sql       = '/usr/share/cacti/cactiConfig.sql'
       $cacti_config_sql_src   = 'puppet:///modules/cacti/redhat/cactiConfig.sql'
-      $spine_config_sql       = '/var/www/cacti/spineConfig.sql'
+      $spine_config_sql       = '/usr/share/cacti/spineConfig.sql'
       $spine_config_sql_src   = 'puppet:///modules/cacti/redhat/spineConfig.sql'
     }
 	'ubuntu', 'debian': { 

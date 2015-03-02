@@ -42,7 +42,6 @@ class cacti::config
       ensure  => present,
       content => $cron_cacti_content,
       require => Package[$cacti],
-      notify  => Service[$cron],
       mode    => 644;
     $cacti_config_sql:
       ensure  => present,
@@ -51,15 +50,15 @@ class cacti::config
   } # file
 
   exec{ "cacti-config":
-      command     => "/usr/bin/mysql $db_name < /var/www/cacti/cactiConfig.sql",
+      command     => "/usr/bin/mysql ${db_name} < ${cacti_dir}/cactiConfig.sql",
       logoutput   => true,
       refreshonly => true,
-      require     => Service['mysqld'];
+      require     => Package['mysql'];
   }
 
   #This is executed to deal with a problem with cacti 8.8.a where the poller cache is not built.
   exec{ "rebuild_poller_cache":
-      command     => "/usr/bin/php /var/www/cacti/cli/rebuild_poller_cache.php",
+      command     => "/usr/bin/php ${cacti_dir}/cli/rebuild_poller_cache.php",
       logoutput   => true,
       refreshonly => true,
   }
