@@ -29,7 +29,6 @@ class cacti::params {
       $config_php             = '/etc/cacti/db.php'
       $config_php_src         = 'puppet:///modules/cacti/redhat/config.php'
       $php_ini                = '/etc/php.ini'
-      $php_ini_src            = 'puppet:///modules/cacti/redhat/php.ini'
       $cacti_conf             = '/etc/httpd/conf.d/cacti.conf'
       $cacti_conf_src         = 'puppet:///modules/cacti/redhat/cacti.conf'
       $spine_conf             = '/etc/spine.conf'

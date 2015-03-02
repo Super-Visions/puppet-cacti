@@ -29,10 +29,6 @@ class cacti::config
       owner   => $apache_user,
       group   => $apache_group,
       mode    => 640;
-    $php_ini:
-      ensure  => present,
-      source  => $php_ini_src,
-      require => Package[$apache];
     $cacti_conf:
       ensure  => present,
       source  => $cacti_conf_src,
