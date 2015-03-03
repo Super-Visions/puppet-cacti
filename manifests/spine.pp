@@ -14,7 +14,7 @@ class cacti::spine
 
   package {
     $spine:
-      require => [ Package[$cacti], Exec["cacti-config"] ],
+      require => [ Package[$cacti] ],
   } #package
 
   file {
@@ -25,12 +25,5 @@ class cacti::spine
       source  => $spine_config_sql_src,
       require => Package[$spine];
   } # file
-
-  exec{ "spine-config":
-      command     => "/usr/bin/mysql $db_name < $spine_config_sql",
-      logoutput   => true,
-      refreshonly => true,
-      require     => [ Package[$spine], Mysql::Db[$db_name], File[$spine_config_sql] ],
-  }
 
 } #class cacti::spine

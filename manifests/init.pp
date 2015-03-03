@@ -25,7 +25,7 @@ class cacti
 
   class { 'cacti::config':
     db_name       => $db_name,
-    require       => Class['cacti::install'],
+    require       => Package[$cacti],
   }  
 
 #  include cacti::service
