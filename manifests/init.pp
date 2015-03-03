@@ -12,7 +12,7 @@ class cacti
   $db_name  = 'cacti',
   $db_user  = 'cactiuser',
   $db_pass  = 'cactiuser',
-  $install_spine  = false
+  $install_spine  = true
 
 ) inherits cacti::params {
   
